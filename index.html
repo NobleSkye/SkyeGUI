@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyeGUI Editor</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <h1 title="&6Skye&bGUI &fEditor - Click color codes below to copy!"><i class="fas fa-cube"></i> <span class="title-skye">&6Skye</span><span class="title-gui">&bGUI</span> <span class="title-editor">&fEditor</span></h1>
+            <div class="header-actions">
+                <button id="export-btn" class="btn btn-primary">
+                    <i class="fas fa-download"></i> Export YAML
+                </button>
+                <button id="import-btn" class="btn btn-secondary">
+                    <i class="fas fa-upload"></i> Import YAML
+                </button>
+                <input type="file" id="import-file" accept=".yml,.yaml" style="display: none;">
+            </div>
+        </header>
+
+        <div class="main-container">
+            <!-- Color Codes Panel -->
+            <div class="color-codes-panel">
+                <h2><i class="fas fa-palette"></i> Color Codes</h2>
+                
+                <div class="format-toggle">
+                    <button id="toggle-format-btn" class="btn btn-accent" data-format="legacy">
+                        <i class="fas fa-exchange-alt"></i> Switch to MiniMessage
+                    </button>
+                </div>
+
+                <div class="color-grid">
+                    <div class="color-section">
+                        <h3>Colors</h3>
+                        <div class="color-items">
+                            <div class="color-item" data-legacy="&0" data-mini="<black>" style="background-color: #000000;">
+                                <span class="color-code">&0</span>
+                                <span class="color-name">Black</span>
+                            </div>
+                            <div class="color-item" data-legacy="&1" data-mini="<dark_blue>" style="background-color: #0000AA;">
+                                <span class="color-code">&1</span>
+                                <span class="color-name">Dark Blue</span>
+                            </div>
+                            <div class="color-item" data-legacy="&2" data-mini="<dark_green>" style="background-color: #00AA00;">
+                                <span class="color-code">&2</span>
+                                <span class="color-name">Dark Green</span>
+                            </div>
+                            <div class="color-item" data-legacy="&3" data-mini="<dark_aqua>" style="background-color: #00AAAA;">
+                                <span class="color-code">&3</span>
+                                <span class="color-name">Dark Aqua</span>
+                            </div>
+                            <div class="color-item" data-legacy="&4" data-mini="<dark_red>" style="background-color: #AA0000;">
+                                <span class="color-code">&4</span>
+                                <span class="color-name">Dark Red</span>
+                            </div>
+                            <div class="color-item" data-legacy="&5" data-mini="<dark_purple>" style="background-color: #AA00AA;">
+                                <span class="color-code">&5</span>
+                                <span class="color-name">Dark Purple</span>
+                            </div>
+                            <div class="color-item" data-legacy="&6" data-mini="<gold>" style="background-color: #FFAA00;">
+                                <span class="color-code">&6</span>
+                                <span class="color-name">Gold</span>
+                            </div>
+                            <div class="color-item" data-legacy="&7" data-mini="<gray>" style="background-color: #AAAAAA;">
+                                <span class="color-code">&7</span>
+                                <span class="color-name">Gray</span>
+                            </div>
+                            <div class="color-item" data-legacy="&8" data-mini="<dark_gray>" style="background-color: #555555;">
+                                <span class="color-code">&8</span>
+                                <span class="color-name">Dark Gray</span>
+                            </div>
+                            <div class="color-item" data-legacy="&9" data-mini="<blue>" style="background-color: #5555FF;">
+                                <span class="color-code">&9</span>
+                                <span class="color-name">Blue</span>
+                            </div>
+                            <div class="color-item" data-legacy="&a" data-mini="<green>" style="background-color: #55FF55;">
+                                <span class="color-code">&a</span>
+                                <span class="color-name">Green</span>
+                            </div>
+                            <div class="color-item" data-legacy="&b" data-mini="<aqua>" style="background-color: #55FFFF;">
+                                <span class="color-code">&b</span>
+                                <span class="color-name">Aqua</span>
+                            </div>
+                            <div class="color-item" data-legacy="&c" data-mini="<red>" style="background-color: #FF5555;">
+                                <span class="color-code">&c</span>
+                                <span class="color-name">Red</span>
+                            </div>
+                            <div class="color-item" data-legacy="&d" data-mini="<light_purple>" style="background-color: #FF55FF;">
+                                <span class="color-code">&d</span>
+                                <span class="color-name">Light Purple</span>
+                            </div>
+                            <div class="color-item" data-legacy="&e" data-mini="<yellow>" style="background-color: #FFFF55;">
+                                <span class="color-code">&e</span>
+                                <span class="color-name">Yellow</span>
+                            </div>
+                            <div class="color-item" data-legacy="&f" data-mini="<white>" style="background-color: #FFFFFF; color: #000;">
+                                <span class="color-code">&f</span>
+                                <span class="color-name">White</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="color-section">
+                        <h3>Formatting</h3>
+                        <div class="color-items">
+                            <div class="color-item format-item" data-legacy="&l" data-mini="<bold>">
+                                <span class="color-code">&l</span>
+                                <span class="color-name">Bold</span>
+                            </div>
+                            <div class="color-item format-item" data-legacy="&o" data-mini="<italic>">
+                                <span class="color-code">&o</span>
+                                <span class="color-name">Italic</span>
+                            </div>
+                            <div class="color-item format-item" data-legacy="&n" data-mini="<underlined>">
+                                <span class="color-code">&n</span>
+                                <span class="color-name">Underlined</span>
+                            </div>
+                            <div class="color-item format-item" data-legacy="&m" data-mini="<strikethrough>">
+                                <span class="color-code">&m</span>
+                                <span class="color-name">Strikethrough</span>
+                            </div>
+                            <div class="color-item format-item" data-legacy="&k" data-mini="<obfuscated>">
+                                <span class="color-code">&k</span>
+                                <span class="color-name">Obfuscated</span>
+                            </div>
+                            <div class="color-item format-item" data-legacy="&r" data-mini="<reset>">
+                                <span class="color-code">&r</span>
+                                <span class="color-name">Reset</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="export-options">
+                    <h3><i class="fas fa-cog"></i> Export Format</h3>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="export-minimessage-toggle">
+                        <span class="slider"></span>
+                        <span class="toggle-label">Export as MiniMessage</span>
+                    </label>
+                </div>
+            </div>
+            <!-- Settings Panel -->
+            <div class="settings-panel">
+                <h2><i class="fas fa-cog"></i> GUI Settings</h2>
+                
+                <div class="setting-group">
+                    <label for="gui-title">GUI Title</label>
+                    <input type="text" id="gui-title" placeholder="&6My GUI Title">
+                    <small>Supports Legacy (&6, &l, &o) and MiniMessage (&lt;gold&gt;, &lt;bold&gt;, &lt;italic&gt;) formatting</small>
+                </div>
+
+                <div class="setting-group">
+                    <label for="gui-size">GUI Size</label>
+                    <select id="gui-size">
+                        <option value="9">9 slots (1 row)</option>
+                        <option value="18">18 slots (2 rows)</option>
+                        <option value="27" selected>27 slots (3 rows)</option>
+                        <option value="36">36 slots (4 rows)</option>
+                        <option value="45">45 slots (5 rows)</option>
+                        <option value="54">54 slots (6 rows)</option>
+                    </select>
+                </div>
+
+                <div class="setting-group">
+                    <label for="gui-command">Command Trigger</label>
+                    <input type="text" id="gui-command" placeholder="mygui">
+                    <small>Command without leading slash</small>
+                </div>
+
+                <div class="setting-group">
+                    <label for="gui-permission">Permission Node (Optional)</label>
+                    <input type="text" id="gui-permission" placeholder="myplugin.gui.use">
+                </div>
+
+                <div class="setting-group">
+                    <h3><i class="fas fa-magic"></i> PlaceholderAPI Support</h3>
+                    <div class="placeholder-list">
+                        <div class="placeholder-item" data-placeholder="%player_name%">
+                            <span>%player_name%</span>
+                            <small>Player's name</small>
+                        </div>
+                        <div class="placeholder-item" data-placeholder="%player_displayname%">
+                            <span>%player_displayname%</span>
+                            <small>Player's display name</small>
+                        </div>
+                        <div class="placeholder-item" data-placeholder="%player_level%">
+                            <span>%player_level%</span>
+                            <small>Player's level</small>
+                        </div>
+                        <div class="placeholder-item" data-placeholder="%player_exp%">
+                            <span>%player_exp%</span>
+                            <small>Player's experience</small>
+                        </div>
+                        <div class="placeholder-item" data-placeholder="%vault_eco_balance%">
+                            <span>%vault_eco_balance%</span>
+                            <small>Player's balance (Vault)</small>
+                        </div>
+                        <div class="placeholder-item" data-placeholder="%player_world%">
+                            <span>%player_world%</span>
+                            <small>Player's current world</small>
+                        </div>
+                        <div class="placeholder-item" data-placeholder="%player_ping%">
+                            <span>%player_ping%</span>
+                            <small>Player's ping</small>
+                        </div>
+                        <div class="placeholder-item" data-placeholder="%player_health%">
+                            <span>%player_health%</span>
+                            <small>Player's health</small>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(74, 158, 255, 0.1); border-radius: 6px; border: 1px solid rgba(74, 158, 255, 0.2);">
+                        <small><strong>Formatting Examples:</strong></small>
+                        <div style="font-family: monospace; font-size: 0.8rem; margin-top: 0.25rem; color: #b0b0b0;">
+                            Legacy: &amp;6&amp;lGold Bold<br>
+                            MiniMessage: &lt;gold&gt;&lt;bold&gt;Gold Bold
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GUI Grid -->
+            <div class="gui-container">
+                <h2><i class="fas fa-th"></i> GUI Layout</h2>
+                <div id="gui-grid" class="gui-grid">
+                    <!-- Grid slots will be generated dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Item Editor Modal -->
+        <div id="item-editor-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-edit"></i> Edit Item</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="item-preview">
+                        <div id="item-icon" class="item-icon">
+                            <img src="" alt="Item Icon" id="item-icon-img">
+                        </div>
+                        <div class="item-info">
+                            <div id="item-name-preview" class="item-name">Item Name</div>
+                            <div id="item-lore-preview" class="item-lore"></div>
+                        </div>
+                    </div>
+
+                    <div class="editor-tabs">
+                        <button class="tab-btn active" data-tab="item">Item</button>
+                        <button class="tab-btn" data-tab="display">Display</button>
+                        <button class="tab-btn" data-tab="actions">Actions</button>
+                    </div>
+
+                    <div class="tab-content">
+                        <!-- Item Tab -->
+                        <div id="item-tab" class="tab-pane active">
+                            <div class="form-group">
+                                <label for="item-material">Material</label>
+                                <div class="material-input-group">
+                                    <input type="text" id="item-material" placeholder="Search for item...">
+                                    <button id="material-picker-btn" class="btn btn-icon">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                                <div id="material-suggestions" class="suggestions"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="item-amount">Amount</label>
+                                <input type="number" id="item-amount" min="1" max="64" value="1">
+                            </div>
+                        </div>
+
+                        <!-- Display Tab -->
+                        <div id="display-tab" class="tab-pane">
+                            <div class="form-group">
+                                <label for="item-name">Display Name</label>
+                                <input type="text" id="item-name" placeholder="&6Custom Item Name">
+                                <small>Supports Legacy (&6) and MiniMessage (&lt;gold&gt;) formatting</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="item-lore">Lore</label>
+                                <textarea id="item-lore" rows="4" placeholder="&7Line 1
+&7Line 2
+&a&lSpecial text"></textarea>
+                                <small>One line per line, supports Legacy and MiniMessage formatting</small>
+                            </div>
+                        </div>
+
+                        <!-- Actions Tab -->
+                        <div id="actions-tab" class="tab-pane">
+                            <div class="form-group">
+                                <label for="click-commands">Click Commands</label>
+                                <textarea id="click-commands" rows="3" placeholder="give %player% diamond 1
+say Hello %player_name%!"></textarea>
+                                <small>One command per line, %player% will be replaced with player name</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" id="close-gui"> Close GUI on click
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="clear-item-btn" class="btn btn-danger">
+                        <i class="fas fa-trash"></i> Clear Slot
+                    </button>
+                    <button id="save-item-btn" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Item
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Material Picker Modal -->
+        <div id="material-picker-modal" class="modal">
+            <div class="modal-content material-picker">
+                <div class="modal-header">
+                    <h3><i class="fas fa-cube"></i> Select Material</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="material-search">
+                        <input type="text" id="material-search" placeholder="Search materials...">
+                    </div>
+                    <div class="material-categories">
+                        <button class="category-btn active" data-category="all">All</button>
+                        <button class="category-btn" data-category="blocks">Blocks</button>
+                        <button class="category-btn" data-category="items">Items</button>
+                        <button class="category-btn" data-category="tools">Tools</button>
+                        <button class="category-btn" data-category="combat">Combat</button>
+                        <button class="category-btn" data-category="food">Food</button>
+                        <button class="category-btn" data-category="redstone">Redstone</button>
+                        <button class="category-btn" data-category="decoration">Decoration</button>
+                    </div>
+                    <div id="material-grid" class="material-grid">
+                        <!-- Materials will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 SkyeGUI Editor</p>
+            <div class="footer-links">
+                <a href="https://github.com/skyenetmc/skyegui" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://nobleskye.dev" target="_blank">
+                    <i class="fas fa-globe"></i> NobleSkye.dev
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="minecraft-items.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
